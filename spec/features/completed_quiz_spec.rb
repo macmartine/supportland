@@ -37,12 +37,20 @@ describe "CompletedQuiz" do
 	    page.should have_content('We got it!')
 	  end
 
-	  it "should not accept invalid format" do
+	  it "should not accept answer in an invalid format" do
 	  	pending
 	    fill_in 'User response', :with => 'abc'
 	    click_button 'Final answer!'
 	    current_path.should eq(completed_quizzes_path)
 	    page.should have_content('Please enter a number.')
+	  end
+
+	  it "doesn't let you take quiz a second time" do
+	    pending
+	  end
+
+	  it "let's you know if there's not currently a quiz" do
+	    pending
 	  end
 
 	end
