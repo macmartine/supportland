@@ -1,0 +1,16 @@
+.page-header
+	%h2
+		Completed Quizzes
+		=link_to 'Take current quiz', new_completed_quiz_path, :class => 'btn btn-primary pull-right'
+
+%table.table.table-striped
+	%tbody
+		%tr
+			%th Quiz start date
+			%th Date taken
+			%th Question
+			%th Answer
+			%th My Response
+			%th Winner
+
+		=render :partial => 'completed_quiz', :collection => @completed_quizzes

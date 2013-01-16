@@ -1,0 +1,7 @@
+= simple_form_for @completed_quiz do |form|
+
+	= form.simple_fields_for :user_responses do |builder|
+		= render :partial => 'user_response', :locals => { :form => builder }
+
+	.form-actions
+		= form.submit 'Final answer!', :class => 'btn btn-primary'

@@ -1,0 +1,27 @@
+%tr
+	%td
+		= completed_quiz.start_date
+	%td
+		= completed_quiz.created_at
+	%td
+		= completed_quiz.questions.first.question
+	%td
+		= completed_quiz.questions.first.answer
+	%td
+		/ = completed_quiz.start_date
+	%td
+		/ = completed_quiz.winner.full_name
+
+	/ %th
+	/ 	= completed_quiz.created_at_date
+
+
+	/ / %th Question
+	/ / %th Answer
+	/ / %th My Response
+	/ / %th Winner
+	/ / %td
+	/ / 	=quiz.start_date.to_time.to_s(:short_date)
+	/ / = render :partial => 'question', :collection => quiz.questions
+	/ %td
+	/ 	= completed_quiz.winner

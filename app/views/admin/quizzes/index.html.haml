@@ -1,0 +1,14 @@
+.page-header
+	%h2
+		Quizzes
+		=link_to 'Add Quiz', new_admin_quiz_path, :class => 'btn btn-primary pull-right'
+
+%table.table.table-striped
+	%tbody
+		%tr
+			%th Start date
+			%th Question
+			%th Answer
+			%th Winner
+
+		=render :partial => 'quiz', :collection => @quizzes
