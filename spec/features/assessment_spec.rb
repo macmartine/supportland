@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe "CompletedQuiz" do
+describe "Assessment" do
 
 	describe 'index' do
 
 		before :each do
-			visit completed_quizzes_path
+			visit assessments_path
 		end
 
 		it "displays quizzes taken" do
@@ -14,7 +14,7 @@ describe "CompletedQuiz" do
 
 		it "has 'take quiz' button" do
 		  click_link 'Take current quiz'
-		  current_path.should eq(new_completed_quiz_path)
+		  current_path.should eq(new_assessment_path)
 		end
 
 	end
@@ -33,7 +33,7 @@ describe "CompletedQuiz" do
 	  it "should accept valid format" do
 	    fill_in 'User response', :with => '123'
 	    click_button 'Final answer!'
-	    current_path.should eq(completed_quizzes_path)
+	    current_path.should eq(assessments_path)
 	    page.should have_content('We got it!')
 	  end
 
@@ -41,7 +41,7 @@ describe "CompletedQuiz" do
 	  	pending
 	    fill_in 'User response', :with => 'abc'
 	    click_button 'Final answer!'
-	    current_path.should eq(completed_quizzes_path)
+	    current_path.should eq(assessments_path)
 	    page.should have_content('Please enter a number.')
 	  end
 
@@ -56,4 +56,3 @@ describe "CompletedQuiz" do
 	end
 
 end
-

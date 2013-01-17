@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe CompletedQuiz do
+describe Assessment do
 end

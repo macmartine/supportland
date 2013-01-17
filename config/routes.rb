@@ -1,6 +1,6 @@
 Supportland::Application.routes.draw do
 
-  resources :completed_quizzes
+  resources :assessments
 
   namespace :admin do
     resources :quizzes

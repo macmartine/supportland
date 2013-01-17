@@ -3,11 +3,12 @@
 		New Quiz
 
 = simple_form_for([:admin, @quiz], :html => {:class => 'form-horizontal'}) do |form|
-	=form.input :start_date, :as => :string
+	= form.input :start_date, :as => :string
 
-	=form.simple_fields_for :questions do |q|
-		=q.input :question
-		=q.input :answer
+	= form.simple_fields_for :questions do |q|
+		= q.input :question
+		= q.input :answer
+		= q.input :answer_type, :as => :select, :collection => Question::ANSWER_TYPES
 
 	.form-actions
 		=form.submit 'Save', :class => 'btn btn-primary'

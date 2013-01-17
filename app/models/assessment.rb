@@ -1,4 +1,4 @@
-class CompletedQuiz < ActiveRecord::Base
+class Assessment < ActiveRecord::Base
   attr_accessible :quiz_id, :user_id, :user_responses_attributes
 
   delegate :questions, :winner, :start_date, :to => :quiz
@@ -14,7 +14,7 @@ class CompletedQuiz < ActiveRecord::Base
   def init
   	return if self.user_responses.present?
   	self.questions.map do |q|
-  		self.user_responses.build(:question_id => q.id, :user_id => user.id )
+  		self.user_responses.build(:question_id => q.id)
   	end
   end
 

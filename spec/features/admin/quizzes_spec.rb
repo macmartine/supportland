@@ -10,7 +10,7 @@ describe "Admin::Quizzes" do
 
   it "adds new question when valid" do
     fill_in 'Start date', :with => '12/1/2012'
-    fill_in 'Question', :with => "How many jelly beans aree in the jar in the window of the antique shop downtown?"
+    fill_in 'Question', :with => "How many jelly beans are in the jar in the window of the antique shop downtown?"
     fill_in 'Answer', :with => "1131"
     click_button 'Save'
     current_path.should eq(admin_quizzes_path)
@@ -18,7 +18,7 @@ describe "Admin::Quizzes" do
   end
 
   it "doesn't add question when empty start date" do
-    fill_in 'Question', :with => "How many jelly beans aree in the jar in the window of the antique shop downtown?"
+    fill_in 'Question', :with => "How many jelly beans are in the jar in the window of the antique shop downtown?"
     fill_in 'Answer', :with => "1131"
     click_button 'Save'
     current_path.should eq(admin_quizzes_path)
@@ -35,7 +35,7 @@ describe "Admin::Quizzes" do
 
   it "doesn't add question when empty answer" do
     fill_in 'Start date', :with => '12/1/2012'
-    fill_in 'Question', :with => "How many jelly beans aree in the jar in the window of the antique shop downtown?"
+    fill_in 'Question', :with => "How many jelly beans are in the jar in the window of the antique shop downtown?"
     click_button 'Save'
     current_path.should eq(admin_quizzes_path)
     page.should have_content "can't be blank"
@@ -43,7 +43,7 @@ describe "Admin::Quizzes" do
 
   it "doesn't save quiz on cancel" do
     fill_in 'Start date', :with => '12/1/2012'
-    fill_in 'Question', :with => "How many jelly beans aree in the jar in the window of the antique shop downtown?"
+    fill_in 'Question', :with => "How many jelly beans are in the jar in the window of the antique shop downtown?"
     fill_in 'Answer', :with => "1131"
     click_link 'Cancel'
     current_path.should eq(admin_quizzes_path)
@@ -54,11 +54,35 @@ describe "Admin::Quizzes" do
 
   it "should format date in a friendly way" do
     fill_in 'Start date', :with => '12/1/2012'
-    fill_in 'Question', :with => "How many jelly beans aree in the jar in the window of the antique shop downtown?"
+    fill_in 'Question', :with => "How many jelly beans are in the jar in the window of the antique shop downtown?"
     fill_in 'Answer', :with => "1131"
     click_button 'Save'
     current_path.should eq(admin_quizzes_path)
     page.should have_content 'Jan 12, 2012'
+  end
+
+  it "let's you choose a answer type" do
+    fill_in 'Start date', :with => '12/1/2012'
+    fill_in 'Question', :with => "How many jelly beans aree in the jar in the window of the antique shop downtown?"
+    fill_in 'Answer', :with => "9876"
+    select 'Number', :from => "Answer type"
+    click_button 'Save'
+    current_path.should eq(admin_quizzes_path)
+    page.should have_content '9876'
+  end
+
+  it "won't let you save a string as a number", :focus => true do
+    fill_in 'Start date', :with => '12/1/2012'
+    fill_in 'Question', :with => "How many jelly beans aree in the jar in the window of the antique shop downtown?"
+    fill_in 'Answer', :with => "string"
+    select 'Number', :from => "Answer type"
+    click_button 'Save'
+    current_path.should eq(admin_quizzes_path)
+    page.should have_content 'is not a number'
+  end
+
+  it "properly validates a invalid number answer type" do
+
   end
 
 end
